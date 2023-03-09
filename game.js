@@ -146,7 +146,7 @@ function gameWin() {
   } else {
     pResult, innerHTML;
     localStorage.setItem("record_time", playerTime);
-    pResult.innerHTML = "Primera Vez?! Mu bien, hijoooo!";
+    pResult.innerHTML = "Alba, te has pasado el juego?? Mu bien hijaaaaaa!!!";
   }
   console.log({ recordTime, playerTime });
 }

@@ -139,12 +139,12 @@ function gameWin() {
     const playerTime = Date.now() - timeStart;
     if (recordTime >= playerTime) {
       localStorage.setItem("record_time", playerTime);
-      pResult.innerHTML = "SUPERASTE EL RECORD";
+      pResult.innerHTML =
+        "Alba has vist la cara del tasito, es que eres mu pequeñooooo";
     } else {
-      pResult.innerHTML = "No superaste el record";
+      pResult.innerHTML = "No superaste el record hijaaaa";
     }
   } else {
-    pResult, innerHTML;
     localStorage.setItem("record_time", playerTime);
     pResult.innerHTML = "Alba, te has pasado el juego?? Mu bien hijaaaaaa!!!";
   }

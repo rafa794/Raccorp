@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Platzriv - Juego Online de carreras y calaveras</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="game-container">
-        <canvas id="game"></canvas>
+      <canvas id="game"></canvas>
 
-        <div class="btns">
-            <button type="button" id="up">Arriba</button>
-            <button type="button" id="left">Izquierda</button>
-            <button type="button" id="right">Derecha</button>
-            <button type="button" id="down">Abajo</button>
-        </div>
+      <div class="btns">
+        <button type="button" id="up">Arriba</button>
+        <button type="button" id="left">Izquierda</button>
+        <button type="button" id="right">Derecha</button>
+        <button type="button" id="down">Abajo</button>
+      </div>
 
-        <div class="messages">
-            <!-- To do -->
-            <p>Cualquier parecido con la realidad próxima es pura coincidencia</p>
-        </div>
+      <div class="messages">
+        <!-- To do -->
+        <p>Vidas: <span id="lives"></span></p>
+        <p>Tiempo: ⏳<span id="time"></span></p>
+        <p>Record: <span id="record"></span></p>
+        <p id="result"></p>
+      </div>
     </div>
 
     <script src="./maps.js"></script>
     <script src="./game.js"></script>
-</body>
+  </body>
 </html>

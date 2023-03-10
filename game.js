@@ -8,6 +8,10 @@ const spanLives = document.querySelector("#lives");
 const spanTime = document.querySelector("#time");
 const spanRecord = document.querySelector("#record");
 const pResult = document.querySelector("#result");
+const video = document.getElementById("game-video");
+video.addEventListener("loadedmetadata", function () {
+  console.log("Video cargado!");
+});
 
 let canvasSize;
 let elementsSize;
@@ -37,9 +41,9 @@ window.addEventListener("resize", setCanvasSize);
 
 function setCanvasSize() {
   if (window.innerHeight > window.innerWidth) {
-    canvasSize = window.innerWidth * 0.8;
+    canvasSize = window.innerWidth * 0.7;
   } else {
-    canvasSize = window.innerHeight * 0.8;
+    canvasSize = window.innerHeight * 0.7;
   }
 
   canvas.setAttribute("width", canvasSize);
@@ -130,7 +134,6 @@ function levelWin() {
   startGame();
 }
 function gameWin() {
-  console.log("Terminasteeeee");
   clearInterval(timeInterval);
 
   const recordTime = localStorage.getItem("record_time");
@@ -139,15 +142,16 @@ function gameWin() {
     const playerTime = Date.now() - timeStart;
     if (recordTime >= playerTime) {
       localStorage.setItem("record_time", playerTime);
-      pResult.innerHTML =
-        "Alba has vist la cara del tasito, es que eres mu pequeñooooo";
+      pResult.innerHTML = "Te quiero asere!";
     } else {
-      pResult.innerHTML = "No superaste el record hijaaaa";
+      pResult.innerHTML = "No superaste el record perro";
     }
   } else {
     localStorage.setItem("record_time", playerTime);
-    pResult.innerHTML = "Alba, te has pasado el juego?? Mu bien hijaaaaaa!!!";
+    pResult.innerHTML = "";
   }
+  video.classList.remove("oculto");
+  playVideo();
   console.log({ recordTime, playerTime });
 }
 
@@ -172,6 +176,15 @@ function showRecord() {
 }
 function showTime() {
   spanTime.innerHTML = Date.now() - timeStart;
+}
+function playVideo() {
+  if (video.readyState >= 2) {
+    video.play();
+  } else {
+    video.addEventListener("loadedmetadata", function () {
+      video.play();
+    });
+  }
 }
 window.addEventListener("keydown", moveByKeys);
 btnUp.addEventListener("click", moveUp);

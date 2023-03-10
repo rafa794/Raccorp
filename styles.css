@@ -55,10 +55,20 @@ p {
   margin: 0;
   width: 100%;
 }
-
+#game-video {
+  position: fixed;
+  top: 30%;
+  right: auto;
+  width: 50%;
+  height: 50%;
+  z-index: 9999;
+}
+.oculto {
+  display: none;
+}
 @media (max-width: 440px) {
   button {
-    margin-top: 25px;
+    margin-top: 5px;
   }
   #up,
   #down {

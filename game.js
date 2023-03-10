@@ -9,7 +9,6 @@ const spanTime = document.querySelector("#time");
 const spanRecord = document.querySelector("#record");
 const pResult = document.querySelector("#result");
 
-
 let canvasSize;
 let elementsSize;
 let level = 0;
@@ -47,6 +46,8 @@ function setCanvasSize() {
   canvas.setAttribute("height", canvasSize);
 
   elementsSize = canvasSize / 10;
+  playerPosition.x = undefined;
+  playerPosition.y = undefined;
 
   startGame();
 }
@@ -139,13 +140,13 @@ function gameWin() {
     const playerTime = Date.now() - timeStart;
     if (recordTime >= playerTime) {
       localStorage.setItem("record_time", playerTime);
-      pResult.innerHTML = "Te quiero asere!";
+      pResult.innerHTML = "Rompiste el record, felicidades!";
     } else {
-      pResult.innerHTML = "No superaste el record perro";
+      pResult.innerHTML = "No superaste el record 😥";
     }
   } else {
     localStorage.setItem("record_time", playerTime);
-    pResult.innerHTML = "";
+    pResult.innerHTML = "Felicidades, te has ganado el juego por primera vez!";
   }
   console.log({ recordTime, playerTime });
 }
@@ -172,7 +173,6 @@ function showRecord() {
 function showTime() {
   spanTime.innerHTML = Date.now() - timeStart;
 }
-
 
 window.addEventListener("keydown", moveByKeys);
 btnUp.addEventListener("click", moveUp);

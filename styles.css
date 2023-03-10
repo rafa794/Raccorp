@@ -75,4 +75,7 @@ p {
     margin-left: 100%;
     margin-right: 100%;
   }
+  .btns {
+    margin: -18%;
+  }
 }

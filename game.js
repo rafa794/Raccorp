@@ -8,10 +8,7 @@ const spanLives = document.querySelector("#lives");
 const spanTime = document.querySelector("#time");
 const spanRecord = document.querySelector("#record");
 const pResult = document.querySelector("#result");
-const video = document.getElementById("game-video");
-video.addEventListener("loadedmetadata", function () {
-  console.log("Video cargado!");
-});
+
 
 let canvasSize;
 let elementsSize;
@@ -150,8 +147,6 @@ function gameWin() {
     localStorage.setItem("record_time", playerTime);
     pResult.innerHTML = "";
   }
-  video.classList.remove("oculto");
-  playVideo();
   console.log({ recordTime, playerTime });
 }
 
@@ -177,15 +172,8 @@ function showRecord() {
 function showTime() {
   spanTime.innerHTML = Date.now() - timeStart;
 }
-function playVideo() {
-  if (video.readyState >= 2) {
-    video.play();
-  } else {
-    video.addEventListener("loadedmetadata", function () {
-      video.play();
-    });
-  }
-}
+
+
 window.addEventListener("keydown", moveByKeys);
 btnUp.addEventListener("click", moveUp);
 btnRight.addEventListener("click", moveRight);

@@ -76,6 +76,9 @@ p {
     margin-right: 100%;
   }
   .btns {
-    margin: -18%;
+    margin-top: -30%;
+  }
+  .messages {
+    margin-top: -20%;
   }
 }

@@ -55,7 +55,7 @@ p {
   margin: 0;
   width: 100%;
 }
-}
+
 @media (max-width: 440px) {
   button {
     margin-top: 5px;

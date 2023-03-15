@@ -143,7 +143,7 @@ function gameWin() {
       pResult.innerHTML = "Genial, rompiste el record😀";
       reiniciar();
     } else {
-      pResult.innerHTML = "No superaste el record 😢";
+      pResult.innerHTML = "No superaste el récord 😢";
       reiniciar();
     }
   } else {

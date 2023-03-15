@@ -8,19 +8,17 @@ const spanLives = document.querySelector("#lives");
 const spanTime = document.querySelector("#time");
 const spanRecord = document.querySelector("#record");
 const pResult = document.querySelector("#result");
-const video = document.getElementById("game-video");
-video.addEventListener("loadedmetadata", function () {
-  console.log("Video cargado!");
-});
+const pReset = document.querySelector("#reset");
 
 let canvasSize;
 let elementsSize;
 let level = 0;
 let lives = 3;
-
 let timePlayer;
 let timeInterval;
 let timeStart;
+canvas.removeAttribute("#win");
+
 const playerPosition = {
   x: undefined,
   y: undefined,
@@ -46,14 +44,17 @@ function setCanvasSize() {
     canvasSize = window.innerHeight * 0.7;
   }
 
+  canvasSize = Number(canvasSize.toFixed(0));
+
   canvas.setAttribute("width", canvasSize);
   canvas.setAttribute("height", canvasSize);
 
   elementsSize = canvasSize / 10;
 
+  playerPosition.x = undefined;
+  playerPosition.y = undefined;
   startGame();
 }
-
 function startGame() {
   game.font = elementsSize + "px Verdana";
   game.textAlign = "end";
@@ -104,7 +105,6 @@ function startGame() {
   });
   movePlayer();
 }
-
 function movePlayer() {
   const giftCollisionX =
     playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
@@ -130,7 +130,6 @@ function movePlayer() {
 function levelWin() {
   console.log("Subiste de nivel");
   level++;
-  console.log("Level ", level + 1, " Lives ", lives);
   startGame();
 }
 function gameWin() {
@@ -142,17 +141,32 @@ function gameWin() {
     const playerTime = Date.now() - timeStart;
     if (recordTime >= playerTime) {
       localStorage.setItem("record_time", playerTime);
-      pResult.innerHTML = "Te quiero asere!";
+      pResult.innerHTML = "Genial, rompiste el record😀";
+      reiniciar();
     } else {
-      pResult.innerHTML = "No superaste el record perro";
+      pResult.innerHTML = "No superaste el record 😢";
+      reiniciar();
     }
   } else {
     localStorage.setItem("record_time", playerTime);
-    pResult.innerHTML = "";
+    pResult.innerHTML =
+      "Felicidades, has ganado por primera vez, ahora intenta superar tu tiempo!";
+    reiniciar();
   }
-  video.classList.remove("oculto");
-  playVideo();
-  console.log({ recordTime, playerTime });
+}
+function reiniciar() {
+  canvas.classList.add("win");
+  var segundos = 5;
+  var temporizador = setInterval(cuentaRegresiva, 1000);
+  function cuentaRegresiva() {
+    segundos--;
+    if (segundos <= 0) {
+      clearInterval(temporizador);
+      location.reload();
+    } else {
+      pReset.innerHTML = `Reiniciando en: ${segundos}`;
+    }
+  }
 }
 
 function levelFail() {
@@ -177,15 +191,7 @@ function showRecord() {
 function showTime() {
   spanTime.innerHTML = Date.now() - timeStart;
 }
-function playVideo() {
-  if (video.readyState >= 2) {
-    video.play();
-  } else {
-    video.addEventListener("loadedmetadata", function () {
-      video.play();
-    });
-  }
-}
+
 window.addEventListener("keydown", moveByKeys);
 btnUp.addEventListener("click", moveUp);
 btnRight.addEventListener("click", moveRight);

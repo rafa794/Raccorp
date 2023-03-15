@@ -4,6 +4,7 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .game-container {
@@ -13,12 +14,15 @@ body {
   flex-wrap: wrap;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  overflow-x: hidden;
 }
 
 canvas {
   border: 4px solid #ff6600;
   border-radius: 8px;
   background-color: lightblue;
+  margin: 10px auto;
 }
 
 .btns {
@@ -45,8 +49,8 @@ button:not(:last-child) {
 .messages {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
-  width: 80%;
+  margin: 10px auto 0px;
+  width: 50%;
   max-width: 460px;
 }
 
@@ -55,18 +59,34 @@ p {
   margin: 0;
   width: 100%;
 }
-#game-video {
-  position: fixed;
-  top: 30%;
-  right: auto;
-  width: 50%;
-  height: 50%;
-  z-index: 9999;
+.win {
+  filter: brightness(20%);
+  transition: 0.5s;
 }
-.oculto {
-  display: none;
+#result,
+#reset {
+  position: absolute;
+  top: 25%;
+  left: 46%;
+  width: fit-content;
+  transform: translate(-34%, 50%);
+}
+#reset {
+  top: 40%;
+  transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 @media (max-width: 440px) {
+  #result,
+  #reset {
+    position: absolute;
+    top: 14%;
+    left: 46%;
+    width: fit-content;
+    transform: translate(-41%, -50%);
+  }
+  #reset {
+    top: 30%;
+  }
   button {
     margin-top: 5px;
   }
